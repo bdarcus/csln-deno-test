@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=../schemas/csl-style-schema.json
+---
+title: Example template file
+description: This is an example of how we might bundle together widely used partial templates.
+templates:
+  - name: how-publisher-apa
+    template:
+      - wrap: parentheses
+        delimiter: ", "
+        format: 
+          - variable: publisher
+  - name: title-apa
+    template:
+      - when:
+          - hasVariable:
+              - volume
+              - issue
+            format:
+              - variable: title
+                # instead of using prefix and suffix strings for punctation, let's use
+                # easily-localized parameters
+                wrap: quotes
+        else:
+          - variable: title
+            emph: true
+  - name: citation-chicago-author-date
+    template:
+      - delimiter: ", "
+      - when:
+          - hasVariable:
+              - issued
+            match: any
+            format:
+              - delimiter: " "
+                format:
+                  - template: contributors-short
+                  - template: date-in-text
+        else:
+          - delimiter: ", "
+            format:
+              - template: contributors-short
+              - template: date-in-text

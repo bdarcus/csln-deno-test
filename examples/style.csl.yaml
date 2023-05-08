@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=/home/bruce/Code/csl-next.js/schemas/csl-style-schema.json
+---
+# this is a flatter model, relying more heavily on parameters
+title: APA
+options:
+  # localized date formatting config
+  dates:
+    date: long
+    month: long
+    time: long
+    year: numeric
+  contributors:
+    andAs: text
+    role:
+      form: short
+      wrap: parentheses
+    shorten:
+      delimiterPrecedesEtAl: contextual
+      delimiterPrecedesLast: contextual
+  # REVIEW: I think this belongs in `group`
+  disambiguate:
+    addNames: all-with-initials
+    addYearSuffix: true
+  sort:
+    - key: author
+      order: ascending
+    - key: year
+      order: ascending
+  group:
+    # be explicit about grouping, which is core logic
+    - author
+    - year
+  # pave the way for multilingual support
+  localization:
+    scope: global
+  # again: put this on a parameter
+  substitute:
+    author:
+      - editor
+      - translator
+      - title # this still needs work
+citation:
+  options:
+    # There's only so many ways to sort and group, so let's just itemize them
+    sort:
+      - key: author
+        order: ascending
+      - key: year
+        order: descending # in CSL 1.0, we have this global, but it's specific to citations
+    group:
+      - author
+      - year
+  integral:
+    options:
+      group:
+        - author
+    format:
+      - template: author-apa
+      - wrap: parentheses
+        format:
+          - template: year
+          - template: locators-apa
+  nonIntegral:
+    format:
+      - wrap: parentheses
+        delimiter: ": "
+        format:
+          - template: year
+          - template: locators-apa
+bibliography:
+  format:
+    - template: author-apa-full
+    - template: year
+      wrap: parentheses
+    - template: title
+    - template: container-apa
+    - template: howpublished-apa

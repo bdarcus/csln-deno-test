@@ -1,5 +1,5 @@
 import * as fs from "node:fs";
-import { parse } from "https://esm.sh/yaml";
+import { parse } from "npm:yaml";
 import { InputBibliography } from "./bibliography.ts";
 
 export function loadJSON(path: string): InputBibliography {

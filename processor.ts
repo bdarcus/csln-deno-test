@@ -1,12 +1,9 @@
-import {
-  ReferenceTypes,
-  Style,
-} from "./lib/style.ts";
+import { ReferenceTypes, Style } from "./lib/style.ts";
 import { ID, InputReference, Title } from "./lib/reference.ts";
 import { InputBibliography } from "./lib/bibliography.ts";
 import { Contributor } from "./lib/contributor.ts";
-import "reflect-metadata";
-import { plainToClass } from "https://esm.sh/class-transformer";
+import "npm:reflect-metadata";
+import { plainToClass } from "npm:class-transformer";
 
 /**
  * Takes citatons, bibliography, and style, and produces a formatted bibliography.

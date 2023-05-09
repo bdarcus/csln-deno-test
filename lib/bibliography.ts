@@ -1,4 +1,4 @@
-import { InputReference, ID } from "./reference.ts";
+import { ID, InputReference } from "./reference.ts";
 
 type BibliographyFile = string; // is there a path type I can use?
 
